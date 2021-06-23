@@ -54,10 +54,16 @@ int	sort(t_piles *piles)
 {
 	int	median;
 
-	median = pivotfinder(piles->pileA);
-	while (pileinfisin(piles->pileA, median))
+	while (pilelen(piles->pileA) > 2)
 	{
-		push_b(piles);
+		median = pivotfinder(piles->pileA);
+		while (pileinfisin(piles->pileA, median))
+		{
+			if (piles->pileA->v < median)
+				push_b(piles);
+			else
+				rotate_a(piles, 0);
+		}
 	}
 	return (0);
 }

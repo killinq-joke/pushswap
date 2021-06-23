@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/17 15:20:31 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/23 18:37:02 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	pileinfisin(t_cell *pile, int nb)
 	current = pile;
 	while (current)
 	{
-		if (current->v <= nb)
+		if (current->v < nb)
 			return (1);
 		current = current->n;
 	}

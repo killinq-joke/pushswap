@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/23 18:20:47 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/23 18:22:37 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ void			trivotfinder(t_cell *pile, t_group_node *group);
 int				pileinfisin(t_cell *pile, int nb);
 t_group_node	*init_group(int group_len);
 void			addgrouphead(t_group_node **head, t_group_node *new);
-// int				pileinfisin(t_piles *piles, int nb);
 
 #endif
