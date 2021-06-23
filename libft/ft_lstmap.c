@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:56:04 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/05/26 16:45:57 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/17 15:20:21 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 				return (NULL);
 			}
 			ft_lstadd_back(&mapped, new);
-			lst = lst->next;
+			lst = lst->n;
 		}
 		return (mapped);
 	}

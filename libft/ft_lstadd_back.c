@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 08:32:21 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/02/09 12:22:16 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/17 15:20:21 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 		*alst = new;
 		return ;
 	}
-	while (current->next)
-		current = current->next;
-	current->next = new;
+	while (current->n)
+		current = current->n;
+	current->n = new;
 }

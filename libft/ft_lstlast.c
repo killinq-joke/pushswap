@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 08:31:50 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/02/09 11:40:22 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/17 15:20:21 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstlast(t_list *lst)
 	if (lst == 0)
 		return (NULL);
 	last = lst;
-	while (last->next)
-		last = last->next;
+	while (last->n)
+		last = last->n;
 	return (last);
 }

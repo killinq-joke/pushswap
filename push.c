@@ -18,8 +18,8 @@ void	push_a(t_piles *piles)
 
 	if (!piles->pileB)
 		return ;
-	tmp = piles->pileB->next;
-	piles->pileB->next = piles->pileA;
+	tmp = piles->pileB->n;
+	piles->pileB->n = piles->pileA;
 	piles->pileA = piles->pileB;
 	piles->pileB = tmp;
 	ft_putstr("pa\n");
@@ -31,9 +31,17 @@ void	push_b(t_piles *piles)
 
 	if (!piles->pileA)
 		return ;
-	tmp = piles->pileA->next;
-	piles->pileA->next = piles->pileB;
+	tmp = piles->pileA->n;
+	piles->pileA->n = piles->pileB;
 	piles->pileB = piles->pileA;
 	piles->pileA = tmp;
 	ft_putstr("pb\n");
+}
+
+void	push(t_piles *piles, char pilename)
+{
+	if (pilename == 'a')
+		push_a(piles);
+	else if (pilename == 'b')
+		push_b(piles);
 }

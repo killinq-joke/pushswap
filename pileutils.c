@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:03:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/11 07:20:56 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/17 15:20:31 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		pilelen(t_cell *pile)
 	current = pile;
 	while (current)
 	{
-		current = current->next;
+		current = current->n;
 		len++;
 	}
 	return (len);
@@ -34,7 +34,7 @@ void	free_pile(t_cell *pile)
 	while (pile)
 	{
 		tmp = pile;
-		pile = pile->next;
+		pile = pile->n;
 		free(tmp);
 	}
 }
@@ -46,13 +46,13 @@ t_cell	*pilecpy(t_cell *pile)
 	t_cell	*current;
 
 	current = pile;
-	cpy = init_cell(current->value);
+	cpy = init_cell(current->v);
 	currentcpy = cpy;
-	while (current->next)
+	while (current->n)
 	{
-		current = current->next;
-		currentcpy->next = init_cell(current->value);
-		currentcpy = currentcpy->next;
+		current = current->n;
+		currentcpy->n = init_cell(current->v);
+		currentcpy = currentcpy->n;
 	}
 	return (cpy);
 }
@@ -67,14 +67,14 @@ t_cell	*pilesort(t_cell *pile)
 	{
 		unsorted = 0;
 		current = pile;
-		while (current->next)
+		while (current->n)
 		{
-			if (current->value > current->next->value)
+			if (current->v > current->n->v)
 			{
-				ft_swap(&current->value, &current->next->value);
+				ft_swap(&current->v, &current->n->v);
 				unsorted = 1;
 			}
-			current = current->next;
+			current = current->n;
 		}
 	}
 	return (pile);
@@ -83,22 +83,14 @@ t_cell	*pilesort(t_cell *pile)
 int		pivotfinder(t_cell *pile)
 {
 	t_cell	*sort;
-	// t_cell	*current;
 	int		median;
 	int		len;
 
 	sort = pilesort(pilecpy(pile));
-	// current = sort;
-	// while (current)
-	// {
-	// 	printf("%d, ", current->value);
-	// 	current = current->next;
-	// }
 	len = pilelen(sort) / 2 + pilelen(sort) % 2;
-	// printf("len == %d\n", len);
 	while (len-- - 1)
-		sort = sort->next;
-	median = sort->value;
+		sort = sort->n;
+	median = sort->v;
 	free_pile(sort);
 	return (median);
 }
@@ -116,14 +108,14 @@ void	trivotfinder(t_cell *pile, t_group_node *group)
 	i = 0;
 	while (i < pilelen(sort) - (2 * len))
 	{
-		current = current->next;
+		current = current->n;
 		i++;
 	}
-	group->pivotLow = current->value;
+	group->pivotLow = current->v;
 	while (i < pilelen(sort) - len)
 	{
-		current = current->next;
+		current = current->n;
 		i++;
 	}
-	group->pivotHigh = current->value;
+	group->pivotHigh = current->v;
 }

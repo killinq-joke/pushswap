@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:18:58 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/05/26 16:25:13 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/17 15:20:21 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_lstsize(t_list *lst)
 	len = 0;
 	while (lst)
 	{
-		lst = lst->next;
+		lst = lst->n;
 		len++;
 	}
 	return (len);

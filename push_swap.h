@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/11 06:43:34 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/23 18:20:47 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_group
 }				t_group;
 
 typedef struct s_cell {
-	int	value;
-	t_cell *next;
+	int		v;
+	t_cell	*n;
 }				t_cell;
 
 typedef struct s_piles {
@@ -61,6 +61,7 @@ void			rr(t_piles *piles);
 void			ss(t_piles *piles);
 void			swap_a(t_piles *piles, int isSS);
 void			swap_b(t_piles *piles, int isSS);
+void			swap(t_piles *piles, char pilename);
 int				check_error(char *arg);
 void			free_piles(t_piles *piles);
 void			push_tailA(t_piles *piles, t_cell *new);
@@ -86,5 +87,6 @@ void			trivotfinder(t_cell *pile, t_group_node *group);
 int				pileinfisin(t_cell *pile, int nb);
 t_group_node	*init_group(int group_len);
 void			addgrouphead(t_group_node **head, t_group_node *new);
+// int				pileinfisin(t_piles *piles, int nb);
 
 #endif
