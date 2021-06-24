@@ -6,21 +6,80 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/23 18:37:02 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/24 13:28:52 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	pileinfisin(t_cell *pile, int nb)
+int	pileinfnum(t_cell *pile, int nb)
+{
+	t_cell	*current;
+	int		numinf;
+
+	numinf = 0;
+	current = pile;
+	while (current)
+	{
+		if (current->v < nb)
+			numinf++;
+		current = current->n;
+	}
+	return (numinf);
+}
+
+int	pilesupnum(t_cell *pile, int nb)
+{
+	t_cell	*current;
+	int		numsup;
+
+	numsup = 0;
+	current = pile;
+	while (current)
+	{
+		if (current->v > nb)
+			numsup++;
+		current = current->n;
+	}
+	return (numsup);
+}
+
+int	issorted(t_cell *pile)
+{
+	t_cell	*current;
+
+	current = pile;
+	while (current->n)
+	{
+		if (current->v > current->n->v)
+			return (0);
+		current = current->n;
+	}
+	return (1);
+}
+
+int	isrevsorted(t_cell *pile)
+{
+	t_cell	*current;
+
+	current = pile;
+	while (current->n)
+	{
+		if (current->v < current->n->v)
+			return (0);
+		current = current->n;
+	}
+	return (1);
+}
+
+int	pileidsorted(t_cell *pile)
 {
 	t_cell	*current;
 
 	current = pile;
 	while (current)
 	{
-		if (current->v < nb)
-			return (1);
+		current->id = 0;
 		current = current->n;
 	}
 	return (0);
