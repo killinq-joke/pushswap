@@ -53,7 +53,12 @@ void	sort3(t_piles *piles, char pilename)
 
 int	sort(t_piles *piles)
 {
+	// if (partissorted(piles, piles->pileA))
+	// {
+	// 	pileidsorted(piles->pileA);
+	// }
 	sortA(piles);
+	sortB(piles);
 	sortB(piles);
 	return (0);
 }
@@ -64,7 +69,7 @@ int	sortA(t_piles *piles)
 	int	numofinf;
 	int	rrnum;
 
-	while (pilelen(piles->pileA) > 2)
+	while (grouplen(piles->pileA) > 2)
 	{
 		rrnum = 0;
 		median = pivotfinder(piles->pileA);
@@ -101,43 +106,40 @@ int	sortB(t_piles *piles)
 	int	numofsup;
 	int	rrnum;
 
-	int	i = 0;
-	while (i++ < 1)
+	while (grouplen(piles->pileB) > 2)
 	{
-		while (grouplen(piles->pileB) > 2)
+		rrnum = 0;
+		median = pivotfinder(piles->pileB);
+		printf("salut == %d\n", numofsup = pilesupnum(piles->pileB, median));
+		while (pilesupnum(piles->pileB, median) > 0)
 		{
-			rrnum = 0;
-			median = pivotfinder(piles->pileB);
-			printf("salut == %d\n", numofsup = pilesupnum(piles->pileB, median));
-			while (pilesupnum(piles->pileB, median) > 0)
+			if (piles->pileB->v > median)
+				push_a(piles);
+			else
 			{
-				if (piles->pileB->v > median)
-					push_a(piles);
-				else
-				{
-					piles->pileB->id++;
-					rotate_b(piles, 0);
-					rrnum++;
-				}
-			}
-			if (numofsup <= 2)
-			{
-				if (piles->pileA->v > piles->pileA->n->v)
-					swap_a(piles, 0);
+				piles->pileB->id++;
+				rotate_b(piles, 0);
+				rrnum++;
 			}
 		}
-		if (piles->pileB->v < piles->pileB->n->v)
-			swap_b(piles, 0);
-		if (grouplen(piles->pileB) == 2)
-			push_a(piles);
-		if (grouplen(piles->pileB) == 1)
-			push_a(piles);
-		while (rrnum--)
-			reverse_ra(piles, 0);
+		if (numofsup <= 2)
+		{
+			if (piles->pileA->v > piles->pileA->n->v)
+				swap_a(piles, 0);
+		}
 	}
+	if (piles->pileB->v < piles->pileB->n->v)
+		swap_b(piles, 0);
+	if (grouplen(piles->pileB) == 2)
+		push_a(piles);
+	if (grouplen(piles->pileB) == 1)
+		push_a(piles);
+	while (rrnum--)
+		reverse_rb(piles, 0);
 	if (partissorted(piles, piles->pileA))
 	{
 		pileidsorted(piles->pileA);
+		// sortB(piles);
 		if (isrevsorted(piles->pileB))
 			pileidsorted(piles->pileB);
 	}
