@@ -119,43 +119,23 @@ void	sort3B(t_piles *piles)
 
 int	sort(t_piles *piles)
 {
-	// if (partissorted(piles, piles->pileA))
-	// {
-	// 	pileidsorted(piles->pileA);
-	// }
+	int	i;
+
 	sortA(piles);
-	sortB(piles);
-	while (grouplen(piles->pileB) == 3)
+	i = 0;
+	while (i++ < 6)
 	{
-		sort3B(piles);
-		push_a(piles);
-		piles->pileA->id = 0;
-		push_a(piles);
-		piles->pileA->id = 0;
-		push_a(piles);
-		piles->pileA->id = 0;
-	}
-	sortB(piles);
-	while (grouplen(piles->pileB) == 3)
-	{
-		sort3B(piles);
-		push_a(piles);
-		piles->pileA->id = 0;
-		push_a(piles);
-		piles->pileA->id = 0;
-		push_a(piles);
-		piles->pileA->id = 0;
-	}
-	sortB(piles);
-	while (grouplen(piles->pileB) == 3)
-	{
-		sort3B(piles);
-		push_a(piles);
-		piles->pileA->id = 0;
-		push_a(piles);
-		piles->pileA->id = 0;
-		push_a(piles);
-		piles->pileA->id = 0;
+		sortB(piles);
+		while (grouplen(piles->pileB) == 3)
+		{
+			sort3B(piles);
+			push_a(piles);
+			piles->pileA->id = 0;
+			push_a(piles);
+			piles->pileA->id = 0;
+			push_a(piles);
+			piles->pileA->id = 0;
+		}
 	}
 	// while (grouplen(piles->pileB) == 3)
 	// {
@@ -283,6 +263,8 @@ int	sortB(t_piles *piles)
 				rrnum++;
 			}
 		}
+		while (rrnum--)
+			reverse_rb(piles, 0);
 		if (numofsup >= 3)
 			sortA(piles);
 		if (numofsup <= 2)
@@ -292,8 +274,6 @@ int	sortB(t_piles *piles)
 			if (piles->pileA->v > piles->pileA->n->v)
 				swap_a(piles, 0);
 		}
-		while (rrnum--)
-			reverse_rb(piles, 0);
 		i++;
 	}
 

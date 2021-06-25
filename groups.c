@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:45:59 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/25 18:19:11 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/25 22:37:45 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	grouplen(t_cell *pile)
 	int		len;
 
 	len = 0;
+	if (!pile)
+		return (0);
 	current = pile;
 	groupid = current->id;
 	while (current && current->id == groupid)
