@@ -62,6 +62,87 @@ int	sortA(t_piles *piles)
 {
 	int	median;
 	int	numofinf;
+	int	rrnum;
+
+	while (pilelen(piles->pileA) > 2)
+	{
+		rrnum = 0;
+		median = pivotfinder(piles->pileA);
+		numofinf = pileinfnum(piles->pileA, median);
+		while (pileinfnum(piles->pileA, median) > 0)
+		{
+			if (piles->pileA->v < median)
+				push_b(piles);
+			else
+			{
+				piles->pileA->id++;
+				rotate_a(piles, 0);
+				rrnum++;
+			}
+		}
+		if (numofinf == 2)
+		{
+			if (piles->pileB->v < piles->pileB->n->v)
+				swap_b(piles, 0);
+		}
+		while (rrnum--)
+			reverse_ra(piles, 0);
+	}
+	if (piles->pileA->v > piles->pileA->n->v)
+		swap_a(piles, 0);
+	piles->pileA->id = 0;
+	piles->pileA->n->id = 0;
+	return (0);
+}
+
+int	sortB(t_piles *piles)
+{
+	int	median;
+	int	numofsup;
+
+	int	i = 0;
+	while (i++ < 2)
+	{
+		while (grouplen(piles->pileB) > 2)
+		{
+			median = pivotfinder(piles->pileB);
+			printf("salut == %d\n", numofsup = pilesupnum(piles->pileB, median));
+			while (pilesupnum(piles->pileB, median) > 0)
+			{
+				if (piles->pileB->v > median)
+					push_a(piles);
+				else
+				{
+					piles->pileB->id++;
+					rotate_b(piles, 0);
+				}
+			}
+			if (numofsup <= 2)
+			{
+				if (piles->pileA->v > piles->pileA->n->v)
+					swap_a(piles, 0);
+			}
+		}
+		if (piles->pileB->v < piles->pileB->n->v)
+			swap_b(piles, 0);
+		if (grouplen(piles->pileB) == 1)
+			push_a(piles);
+	}
+	if (issorted(piles->pileA))
+	{
+		pileidsorted(piles->pileA);
+		if (isrevsorted(piles->pileB))
+			pileidsorted(piles->pileB);
+	}
+	// piles->pileA->id = 0;
+	// piles->pileA->n->id = 0;
+	return (0);
+}
+
+int	sortAgroup(t_piles *piles)
+{
+	int	median;
+	int	numofinf;
 
 	while (pilelen(piles->pileA) > 2)
 	{
@@ -87,44 +168,6 @@ int	sortA(t_piles *piles)
 		swap_a(piles, 0);
 	piles->pileA->id = 0;
 	piles->pileA->n->id = 0;
-	return (0);
-}
-
-int	sortB(t_piles *piles)
-{
-	int	median;
-	int	numofsup;
-
-	while (pilelen(piles->pileB) > 2)
-	{
-		median = pivotfinder(piles->pileB);
-		numofsup = pilesupnum(piles->pileB, median);
-		while (pilesupnum(piles->pileB, median) > 0)
-		{
-			if (piles->pileB->v > median)
-				push_a(piles);
-			else
-			{
-				piles->pileB->id++;
-				rotate_b(piles, 0);
-			}
-		}
-		if (numofsup == 2)
-		{
-			if (piles->pileA->v > piles->pileA->n->v)
-				swap_a(piles, 0);
-		}
-	}
-	if (piles->pileB->v < piles->pileB->n->v)
-		swap_b(piles, 0);
-	if (issorted(piles->pileA))
-	{
-		pileidsorted(piles->pileA);
-		if (isrevsorted(piles->pileB))
-			pileidsorted(piles->pileB);
-	}
-	// piles->pileA->id = 0;
-	// piles->pileA->n->id = 0;
 	return (0);
 }
 

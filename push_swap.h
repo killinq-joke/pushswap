@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/24 14:33:56 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/24 14:58:35 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int				pileinfnum(t_cell *pile, int nb);
 int				issorted(t_cell *pile);
 int				isrevsorted(t_cell *pile);
 int				pileidsorted(t_cell *pile);
+int				grouplen(t_cell *pile);
 
 #endif

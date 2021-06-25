@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:03:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/17 15:20:31 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/25 10:26:06 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ t_cell	*pilecpy(t_cell *pile)
 	t_cell	*cpy;
 	t_cell	*currentcpy;
 	t_cell	*current;
+	int		groupid;
 
 	current = pile;
+	groupid = current->id;
 	cpy = init_cell(current->v);
 	currentcpy = cpy;
-	while (current->n)
+	while (current->n && current->n->id == groupid)
 	{
 		current = current->n;
 		currentcpy->n = init_cell(current->v);
@@ -80,6 +82,19 @@ t_cell	*pilesort(t_cell *pile)
 	return (pile);
 }
 
+void	printpile(t_cell *pile)
+{
+	t_cell	*current;
+
+	current = pile;
+	while (current)
+	{
+		printf("%d ,", current->v);
+		current = current->n;
+	}
+	printf("\n");
+}
+
 int		pivotfinder(t_cell *pile)
 {
 	t_cell	*sort;
@@ -88,6 +103,7 @@ int		pivotfinder(t_cell *pile)
 
 	sort = pilesort(pilecpy(pile));
 	len = pilelen(sort) / 2 + pilelen(sort) % 2;
+	printpile(pile);
 	while (len-- - 1)
 		sort = sort->n;
 	median = sort->v;
