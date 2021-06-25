@@ -125,8 +125,48 @@ int	sort(t_piles *piles)
 	// }
 	sortA(piles);
 	sortB(piles);
-	// sortB(piles);
-	// sortB(piles);
+	while (grouplen(piles->pileB) == 3)
+	{
+		sort3B(piles);
+		push_a(piles);
+		piles->pileA->id = 0;
+		push_a(piles);
+		piles->pileA->id = 0;
+		push_a(piles);
+		piles->pileA->id = 0;
+	}
+	sortB(piles);
+	while (grouplen(piles->pileB) == 3)
+	{
+		sort3B(piles);
+		push_a(piles);
+		piles->pileA->id = 0;
+		push_a(piles);
+		piles->pileA->id = 0;
+		push_a(piles);
+		piles->pileA->id = 0;
+	}
+	sortB(piles);
+	while (grouplen(piles->pileB) == 3)
+	{
+		sort3B(piles);
+		push_a(piles);
+		piles->pileA->id = 0;
+		push_a(piles);
+		piles->pileA->id = 0;
+		push_a(piles);
+		piles->pileA->id = 0;
+	}
+	// while (grouplen(piles->pileB) == 3)
+	// {
+	// 	sort3B(piles);
+	// 	push_a(piles);
+	// 	piles->pileA->id = 0;
+	// 	push_a(piles);
+	// 	piles->pileA->id = 0;
+	// 	push_a(piles);
+	// 	piles->pileA->id = 0;
+	// }
 	return (0);
 }
 
@@ -177,9 +217,9 @@ int	sortA(t_piles *piles)
 	int	median;
 	int	numofinf;
 	int	rrnum;
-	int	i;
+	static int	i = 1;
 
-	i = 1;
+	print_tabs(piles);
 	while (grouplen(piles->pileA) > 3)
 	{
 		rrnum = 0;
@@ -222,9 +262,8 @@ int	sortB(t_piles *piles)
 	int	median;
 	int	numofsup;
 	int	rrnum;
-	int	i;
+	static int	i = 1;
 
-	i = 1;
 	while (grouplen(piles->pileB) > 3)
 	{
 		rrnum = 0;
@@ -244,6 +283,8 @@ int	sortB(t_piles *piles)
 				rrnum++;
 			}
 		}
+		if (numofsup >= 3)
+			sortA(piles);
 		if (numofsup <= 2)
 		{
 			piles->pileA->id = 0;
@@ -255,31 +296,7 @@ int	sortB(t_piles *piles)
 			reverse_rb(piles, 0);
 		i++;
 	}
-	if (grouplen(piles->pileB) == 3)
-	{
-		sort3B(piles);
-		push_a(piles);
-		piles->pileA->id = 0;
-		push_a(piles);
-		piles->pileA->id = 0;
-		push_a(piles);
-		piles->pileA->id = 0;
-		// pileidsorted(piles->pileA);
-	}
-	// if (grouplen(piles->pileA) == 3)
-	// {
-	// 	sort3(piles, 'b');
-	// 	pileidsorted(piles->pileA);
-	// }
-	// if (partissorted(piles, piles->pileA))
-	// {
-	// 	pileidsorted(piles->pileA);
-	// 	// sortB(piles);
-	// 	if (isrevsorted(piles->pileB))
-	// 		pileidsorted(piles->pileB);
-	// }
-	// piles->pileA->id = 0;
-	// piles->pileA->n->id = 0;
+
 	return (0);
 }
 
