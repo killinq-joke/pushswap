@@ -40,48 +40,80 @@ void	push_tailA(t_piles *piles, t_cell *new)
 	}
 }
 
-void	sort3(t_piles *piles, char pilename)
+void	sort3A(t_piles *piles)
 {
-	t_cell	*pile;
-	char	inverse;
+	if (piles->pileA->v < piles->pileA->n->v && piles->pileA->n->v > piles->pileA->n->n->v)
+	{
+		push(piles, 'b');
+		swap(piles, 'a');
+		push(piles, 'a');
+	}
+	else if (piles->pileA->v > piles->pileA->n->v && piles->pileA->v < piles->pileA->n->n->v)
+		swap(piles, 'a');
+	else if (piles->pileA->v > piles->pileA->n->v && piles->pileA->v < piles->pileA->n->v)
+	{
+		push(piles, 'b');
+		swap(piles, 'a');
+		push(piles, 'a');
+		swap(piles, 'a');
+	}
+	else if (piles->pileA->n->v > piles->pileA->n->n->v)
+	{
+		swap(piles, 'a');
+		push(piles, 'b');
+		swap(piles, 'a');
+		push(piles, 'a');
+		swap(piles, 'a');
+	}
+	else if (piles->pileA->n->v < piles->pileA->n->n->v && piles->pileA->v > piles->pileA->n->n->v)
+	{
+		swap(piles, 'a');
+		push(piles, 'b');
+		swap(piles, 'a');
+		push(piles, 'a');
+	}
+}
 
-	inverse = 'a';
-	if (pilename == 'a')
+void	sort3B(t_piles *piles)
+{
+	int	fst;
+	int	sec;
+	int	thr;
+
+	fst = piles->pileB->v;
+	sec = piles->pileB->n->v;
+	thr = piles->pileB->n->n->v;
+	if (fst < sec && sec < thr) // 1 2 3
 	{
-		pile = piles->pileA;
-		inverse = 'b';
+		swap(piles, 'b');
+		push(piles, 'a');
+		swap(piles, 'b');
+		push(piles, 'b');
+		swap(piles, 'b');
 	}
-	else
-		pile = piles->pileB;
-	if (pile->v < pile->n->v && pile->n->v > pile->n->n->v)
+	else if (fst < sec && sec > thr && thr > fst) // 1 3 2
 	{
-		push(piles, inverse);
-		swap(piles, pilename);
-		push(piles, pilename);
+		swap(piles, 'b');
+		push(piles, 'a');
+		swap(piles, 'b');
+		push(piles, 'b');
 	}
-	else if (pile->v > pile->n->v && pile->v < pile->n->n->v)
-		swap(piles, pilename);
-	else if (pile->v > pile->n->v && pile->v < pile->n->v)
+	else if (fst > sec && fst < thr) // 2 1 3
 	{
-		push(piles, inverse);
-		swap(piles, pilename);
-		push(piles, pilename);
-		swap(piles, pilename);
+		push(piles, 'a');
+		swap(piles, 'b');
+		push(piles, 'b');
+		swap(piles, 'b');
 	}
-	else if (pile->n->v > pile->n->n->v)
+	else if (fst < sec && sec > thr) // 2 3 1
 	{
-		swap(piles, pilename);
-		push(piles, inverse);
-		swap(piles, pilename);
-		push(piles, pilename);
-		swap(piles, pilename);
+		swap(piles, 'b');
 	}
-	else if (pile->n->v < pile->n->n->v && pile->v > pile->n->n->v)
+	else if (fst > sec && fst > thr && thr > sec) // 3 1 2
 	{
-		swap(piles, pilename);
-		push(piles, inverse);
-		swap(piles, pilename);
-		push(piles, pilename);
+		push(piles, 'a');
+		swap(piles, 'b');
+		push(piles, 'b');
 	}
 }
 
@@ -92,7 +124,7 @@ int	sort(t_piles *piles)
 	// 	pileidsorted(piles->pileA);
 	// }
 	sortA(piles);
-	// sortB(piles);
+	sortB(piles);
 	// sortB(piles);
 	// sortB(piles);
 	return (0);
@@ -119,6 +151,27 @@ void	smallgroupsorterA(t_piles *piles)
 	}
 }
 
+// void	smallgroupsorterB(t_piles *piles)
+// {
+// 	while (grouplen(piles->pileA) <= 2 && grouplen(piles->pileA) > 0)
+// 	{
+// 		if (grouplen(piles->pileA) == 2)
+// 		{
+// 			if (piles->pileA->v < piles->pileA->n->n->v)
+// 				swap_a(piles, 0);
+// 			piles->pileA->id = 0;
+// 			push_b(piles);
+// 			piles->pileA->id = 0;
+// 			push_b(piles);
+// 		}
+// 		if (grouplen(piles->pileA) == 1)
+// 		{
+// 			piles->pileA->id = 0;
+// 			push_b(piles);
+// 		}
+// 	}
+// }
+
 int	sortA(t_piles *piles)
 {
 	int	median;
@@ -134,8 +187,6 @@ int	sortA(t_piles *piles)
 		numofinf = pileinfnum(piles->pileA, median);
 		while (pileinfnum(piles->pileA, median) > 0)
 		{
-			printid(piles);
-			// printf("%d\n", numofinf);
 			if (piles->pileA->v < median)
 			{
 				piles->pileA->id = i;
@@ -159,14 +210,10 @@ int	sortA(t_piles *piles)
 	}
 	if (grouplen(piles->pileA) == 3)
 	{
-		sort3(piles, 'a');
+		sort3A(piles);
 		pileidsorted(piles->pileA);
 	}
 	smallgroupsorterA(piles);
-	// if (piles->pileA->v > piles->pileA->n->v)
-	// 	swap_a(piles, 0);
-	// piles->pileA->id = 0;
-	// piles->pileA->n->id = 0;
 	return (0);
 }
 
@@ -177,8 +224,8 @@ int	sortB(t_piles *piles)
 	int	rrnum;
 	int	i;
 
-	i = 0;
-	while (grouplen(piles->pileB) > 2)
+	i = 1;
+	while (grouplen(piles->pileB) > 3)
 	{
 		rrnum = 0;
 		median = pivotfinder(piles->pileB);
@@ -187,16 +234,20 @@ int	sortB(t_piles *piles)
 		while (pilesupnum(piles->pileB, median) > 0)
 		{
 			if (piles->pileB->v > median)
-				push_a(piles);
-			else
 			{
 				piles->pileB->id = i;
+				push_a(piles);
+			}
+			else
+			{
 				rotate_b(piles, 0);
 				rrnum++;
 			}
 		}
 		if (numofsup <= 2)
 		{
+			piles->pileA->id = 0;
+			piles->pileA->n->id = 0;
 			if (piles->pileA->v > piles->pileA->n->v)
 				swap_a(piles, 0);
 		}
@@ -204,19 +255,29 @@ int	sortB(t_piles *piles)
 			reverse_rb(piles, 0);
 		i++;
 	}
-	if (piles->pileB->v < piles->pileB->n->v)
-		swap_b(piles, 0);
-	if (grouplen(piles->pileB) == 2)
-		push_a(piles);
-	if (grouplen(piles->pileB) == 1)
-		push_a(piles);
-	if (partissorted(piles, piles->pileA))
+	if (grouplen(piles->pileB) == 3)
 	{
-		pileidsorted(piles->pileA);
-		// sortB(piles);
-		if (isrevsorted(piles->pileB))
-			pileidsorted(piles->pileB);
+		sort3B(piles);
+		push_a(piles);
+		piles->pileA->id = 0;
+		push_a(piles);
+		piles->pileA->id = 0;
+		push_a(piles);
+		piles->pileA->id = 0;
+		// pileidsorted(piles->pileA);
 	}
+	// if (grouplen(piles->pileA) == 3)
+	// {
+	// 	sort3(piles, 'b');
+	// 	pileidsorted(piles->pileA);
+	// }
+	// if (partissorted(piles, piles->pileA))
+	// {
+	// 	pileidsorted(piles->pileA);
+	// 	// sortB(piles);
+	// 	if (isrevsorted(piles->pileB))
+	// 		pileidsorted(piles->pileB);
+	// }
 	// piles->pileA->id = 0;
 	// piles->pileA->n->id = 0;
 	return (0);
@@ -292,7 +353,7 @@ int	main(int ac, char **av)
 		}
 		if (pilelen(piles->pileA) <= 3)
 		{
-			sort3(piles, 'a');
+			sort3A(piles);
 		}
 		else
 		{
