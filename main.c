@@ -99,12 +99,14 @@ int	sortB(t_piles *piles)
 {
 	int	median;
 	int	numofsup;
+	int	rrnum;
 
 	int	i = 0;
-	while (i++ < 2)
+	while (i++ < 1)
 	{
 		while (grouplen(piles->pileB) > 2)
 		{
+			rrnum = 0;
 			median = pivotfinder(piles->pileB);
 			printf("salut == %d\n", numofsup = pilesupnum(piles->pileB, median));
 			while (pilesupnum(piles->pileB, median) > 0)
@@ -115,6 +117,7 @@ int	sortB(t_piles *piles)
 				{
 					piles->pileB->id++;
 					rotate_b(piles, 0);
+					rrnum++;
 				}
 			}
 			if (numofsup <= 2)
@@ -125,10 +128,14 @@ int	sortB(t_piles *piles)
 		}
 		if (piles->pileB->v < piles->pileB->n->v)
 			swap_b(piles, 0);
+		if (grouplen(piles->pileB) == 2)
+			push_a(piles);
 		if (grouplen(piles->pileB) == 1)
 			push_a(piles);
+		while (rrnum--)
+			reverse_ra(piles, 0);
 	}
-	if (issorted(piles->pileA))
+	if (partissorted(piles, piles->pileA))
 	{
 		pileidsorted(piles->pileA);
 		if (isrevsorted(piles->pileB))
@@ -213,6 +220,8 @@ int	main(int ac, char **av)
 		}
 		else
 		{
+			piles->expectedpileA = pilesort(pilecpy(piles->pileA));
+			piles->expectedlen = pilelen(piles->pileA);
 			sort(piles);
 			printid(piles);
 		}

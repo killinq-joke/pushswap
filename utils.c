@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/24 14:56:48 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/25 11:48:35 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,23 @@ int	pilesupnum(t_cell *pile, int nb)
 	return (numsup);
 }
 
-int	issorted(t_cell *pile)
+int	partissorted(t_piles *piles, t_cell *pile)
 {
 	t_cell	*current;
+	t_cell	*sort;
+	int		num;
 
-	current = pile;
-	while (current->n)
+	sort = pilesort(pilecpy(pile));
+	num = piles->expectedlen - pilelen(sort);
+	current = piles->expectedpileA;
+	while (num-- > 0)
+		current = current->n;
+	while (current)
 	{
-		if (current->v > current->n->v)
+		if (current->v != sort->v)
 			return (0);
 		current = current->n;
+		sort = sort->n;
 	}
 	return (1);
 }

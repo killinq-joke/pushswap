@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:03:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/25 10:26:06 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/25 11:48:23 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@ void	free_pile(t_cell *pile)
 }
 
 t_cell	*pilecpy(t_cell *pile)
+{
+	t_cell	*cpy;
+	t_cell	*currentcpy;
+	t_cell	*current;
+
+	current = pile;
+	cpy = init_cell(current->v);
+	currentcpy = cpy;
+	while (current->n)
+	{
+		current = current->n;
+		currentcpy->n = init_cell(current->v);
+		currentcpy = currentcpy->n;
+	}
+	return (cpy);
+}
+
+t_cell	*groupcpy(t_cell *pile)
 {
 	t_cell	*cpy;
 	t_cell	*currentcpy;
@@ -101,7 +119,7 @@ int		pivotfinder(t_cell *pile)
 	int		median;
 	int		len;
 
-	sort = pilesort(pilecpy(pile));
+	sort = pilesort(groupcpy(pile));
 	len = pilelen(sort) / 2 + pilelen(sort) % 2;
 	printpile(pile);
 	while (len-- - 1)

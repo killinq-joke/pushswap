@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/24 14:58:35 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/25 11:31:21 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_cell {
 typedef struct s_piles {
 	t_cell	*pileA;
 	t_cell	*pileB;
+	t_cell	*expectedpileA;
 	int		expectedlen;
 	int		sorted;
 }				t_piles;
@@ -91,9 +92,12 @@ int				sortA(t_piles *piles);
 int				sortB(t_piles *piles);
 int				pilesupnum(t_cell *pile, int nb);
 int				pileinfnum(t_cell *pile, int nb);
-int				issorted(t_cell *pile);
+int				partissorted(t_piles *piles, t_cell *pile);
 int				isrevsorted(t_cell *pile);
 int				pileidsorted(t_cell *pile);
+void			printpile(t_cell *pile);
+t_cell			*groupcpy(t_cell *pile);
 int				grouplen(t_cell *pile);
+
 
 #endif
