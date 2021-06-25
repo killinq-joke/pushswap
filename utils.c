@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/25 11:48:35 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/25 14:50:18 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	pileinfnum(t_cell *pile, int nb)
 	numinf = 0;
 	current = pile;
 	groupid = current->id;
-	while (current && current->id == groupid)
+	while (current)
 	{
 		if (current->v < nb)
 			numinf++;
@@ -39,7 +39,7 @@ int	pilesupnum(t_cell *pile, int nb)
 	numsup = 0;
 	current = pile;
 	groupid = current->id;
-	while (current && current->id == groupid)
+	while (current)
 	{
 		if (current->v > nb)
 			numsup++;

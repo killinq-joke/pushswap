@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/25 11:31:21 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/25 15:19:30 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int				pileidsorted(t_cell *pile);
 void			printpile(t_cell *pile);
 t_cell			*groupcpy(t_cell *pile);
 int				grouplen(t_cell *pile);
+int				printid(t_piles *piles);
+void			push(t_piles *piles, char pilename);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:45:59 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/25 12:49:18 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/25 18:19:11 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	grouplen(t_cell *pile)
 	len = 0;
 	current = pile;
 	groupid = current->id;
-	while (current->n && current->id == groupid)
+	while (current && current->id == groupid)
 	{
 		current = current->n;
 		len++;
