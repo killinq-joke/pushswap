@@ -340,12 +340,24 @@ int	printid(t_piles *piles)
 void	optimize(t_scell *res)
 {
 	t_scell	*current;
-	t_scell	*tmp;
+	t_scell	*tmp1;
+	t_scell	*tmp2;
 
 	current = res;
-	while (current)
+	while (current->n->n)
 	{
-		tmp = current;
+		tmp1 = current->n;
+		tmp2 = current->n->n;
+	
+		{
+			if (current->n->str[1] != current->n->n->str[1])
+			{
+				printf("salut == %s -- %s", current->n->str, current->n->n->str);
+				current->n = current->n->n->n;
+				free(tmp1);
+				free(tmp2);
+			}
+		}
 		current = current->n;
 	}
 }
