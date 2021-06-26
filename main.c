@@ -348,9 +348,9 @@ void	optimize(t_scell *res)
 	{
 		tmp1 = current->n;
 		tmp2 = current->n->n;
-	
+		if (tmp1->str[0] == tmp2->str[1] && tmp1->str[0] == 'r')
 		{
-			if (current->n->str[1] != current->n->n->str[1])
+			if ((tmp1->str[1] == 'r' && tmp1->str[2] == tmp2->str[1]) || (tmp2->str[1] == 'r' && tmp2->str[2] == tmp1->str[1]))
 			{
 				printf("salut == %s -- %s", current->n->str, current->n->n->str);
 				current->n = current->n->n->n;
