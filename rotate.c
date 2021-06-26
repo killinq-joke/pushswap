@@ -27,7 +27,7 @@ void	rotate_a(t_piles *piles, int isRR)
 	piles->pileA = tmp;
 	current->n->n = NULL;
 	if (!isRR)
-		ft_putstr("ra\n");
+		addtab(piles, "ra\n");
 }
 
 void	rotate_b(t_piles *piles, int isRR)
@@ -45,12 +45,12 @@ void	rotate_b(t_piles *piles, int isRR)
 	piles->pileB = tmp;
 	current->n->n = NULL;
 	if (!isRR)
-		ft_putstr("rb\n");
+		addtab(piles, "rb\n");
 }
 
 void	rr(t_piles *piles)
 {
 	rotate_a(piles, 1);
 	rotate_b(piles, 1);
-	ft_putstr("rr\n");
+	addtab(piles, "rr\n");
 }

@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 17:37:04 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/17 15:20:21 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/26 16:54:08 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	reverse_ra(t_piles *piles, int isRRR)
 	piles->pileA = current->n;
 	current->n = NULL;
 	if (!isRRR)
-		ft_putstr("rra\n");
+		addtab(piles, "rra\n");
 }
 
 void	reverse_rb(t_piles *piles, int isRRR)
@@ -41,12 +41,12 @@ void	reverse_rb(t_piles *piles, int isRRR)
 	piles->pileB = current->n;
 	current->n = NULL;
 	if (!isRRR)
-		ft_putstr("rrb\n");
+		addtab(piles, "rrb\n");
 }
 
 void	rrr(t_piles *piles)
 {
 	reverse_ra(piles, 1);
 	reverse_rb(piles, 1);
-	ft_putstr("rrr\n");
+	addtab(piles, "rrr\n");
 }

@@ -33,31 +33,36 @@ void	push_tailA(t_piles *piles, t_cell *new)
 	{
 		current = piles->pileA;
 		while (current->n)
-		{
 			current = current->n;
-		}
 		current->n = new;
 	}
 }
 
 void	sort3A(t_piles *piles)
 {
-	if (piles->pileA->v < piles->pileA->n->v && piles->pileA->n->v > piles->pileA->n->n->v)
+	int	fst;
+	int	sec;
+	int	thr;
+
+	fst = piles->pileA->v;
+	sec = piles->pileA->n->v;
+	thr = piles->pileA->n->n->v;
+	if (fst < sec && sec > thr && thr > fst) // 1 3 2
 	{
 		push(piles, 'b');
 		swap(piles, 'a');
 		push(piles, 'a');
 	}
-	else if (piles->pileA->v > piles->pileA->n->v && piles->pileA->v < piles->pileA->n->n->v)
+	else if (fst > sec && fst < thr) // 2 1 3
 		swap(piles, 'a');
-	else if (piles->pileA->v > piles->pileA->n->v && piles->pileA->v < piles->pileA->n->v)
+	else if (fst < sec && sec > thr) // 2 3 1
 	{
 		push(piles, 'b');
 		swap(piles, 'a');
 		push(piles, 'a');
 		swap(piles, 'a');
 	}
-	else if (piles->pileA->n->v > piles->pileA->n->n->v)
+	else if (fst > sec && fst > thr && sec > thr) // 3 2 1
 	{
 		swap(piles, 'a');
 		push(piles, 'b');
@@ -65,7 +70,7 @@ void	sort3A(t_piles *piles)
 		push(piles, 'a');
 		swap(piles, 'a');
 	}
-	else if (piles->pileA->n->v < piles->pileA->n->n->v && piles->pileA->v > piles->pileA->n->n->v)
+	else if (fst > sec && fst > thr && thr > sec) // 3 1 2
 	{
 		swap(piles, 'a');
 		push(piles, 'b');
@@ -119,11 +124,8 @@ void	sort3B(t_piles *piles)
 
 int	sort(t_piles *piles)
 {
-	int	i;
-
 	sortA(piles);
-	i = 0;
-	while (i++ < 13)
+	while (!issorted(piles))
 	{
 		sortB(piles);
 		while (grouplen(piles->pileB) == 3)
@@ -139,6 +141,7 @@ int	sort(t_piles *piles)
 		while (grouplen(piles->pileB) == 2)
 		{
 			if (piles->pileB->v < piles->pileB->n->v)
+				swap_b(piles, 0);
 			push_a(piles);
 			piles->pileA->id = 0;
 			push_a(piles);
@@ -150,16 +153,6 @@ int	sort(t_piles *piles)
 			piles->pileA->id = 0;
 		}
 	}
-	// while (grouplen(piles->pileB) == 3)
-	// {
-	// 	sort3B(piles);
-	// 	push_a(piles);
-	// 	piles->pileA->id = 0;
-	// 	push_a(piles);
-	// 	piles->pileA->id = 0;
-	// 	push_a(piles);
-	// 	piles->pileA->id = 0;
-	// }
 	return (0);
 }
 
@@ -212,7 +205,6 @@ int	sortA(t_piles *piles)
 	int	rrnum;
 	static int	i = 1;
 
-	print_tabs(piles);
 	while (grouplen(piles->pileA) > 3)
 	{
 		rrnum = 0;
@@ -238,7 +230,6 @@ int	sortA(t_piles *piles)
 		}
 		while (rrnum-- > 0)
 			reverse_ra(piles, 0);
-		print_pileA(piles);
 		i++;
 	}
 	if (grouplen(piles->pileA) == 3)
@@ -262,7 +253,6 @@ int	sortB(t_piles *piles)
 		rrnum = 0;
 		median = pivotfinder(piles->pileB);
 		numofsup = pilesupnum(piles->pileB, median);
-		// printf("salut == %d\n", median);
 		while (pilesupnum(piles->pileB, median) > 0)
 		{
 			if (piles->pileB->v > median)
@@ -347,6 +337,34 @@ int	printid(t_piles *piles)
 	return (0);
 }
 
+void	optimize(t_scell *res)
+{
+	t_scell	*current;
+	t_scell	*tmp;
+
+	current = res;
+	while (current)
+	{
+		tmp = current;
+		current = current->n;
+	}
+}
+
+void	free_res(t_scell *res)
+{
+	t_scell	*current;
+	t_scell	*tmp;
+
+	current = res;
+	while (current)
+	{
+		tmp = current;
+		ft_putstr(current->str);
+		current = current->n;
+		free(tmp);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_piles	*piles;
@@ -370,10 +388,11 @@ int	main(int ac, char **av)
 			piles->expectedpileA = pilesort(pilecpy(piles->pileA));
 			piles->expectedlen = pilelen(piles->pileA);
 			sort(piles);
-			printid(piles);
 		}
-		print_tabs(piles);
+		// print_tabs(piles);
 		free_pile(piles->expectedpileA);
+		optimize(piles->results);
+		free_res(piles->results);
 		free_piles(piles);
 	}
 	else

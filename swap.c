@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:24:36 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/17 15:23:21 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/26 16:54:45 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	swap_a(t_piles *piles, int isSS)
 	piles->pileA->v = piles->pileA->n->v;
 	piles->pileA->n->v = tmp;
 	if (!isSS)
-		ft_putstr("sa\n");
+		addtab(piles, "sa\n");
 }
 
 void	swap_b(t_piles *piles, int isSS)
@@ -35,14 +35,14 @@ void	swap_b(t_piles *piles, int isSS)
 	piles->pileB->v = piles->pileB->n->v;
 	piles->pileB->n->v = tmp;
 	if (!isSS)
-		ft_putstr("sb\n");
+		addtab(piles, "sb\n");
 }
 
 void	ss(t_piles *piles)
 {
 	swap_a(piles, 1);
 	swap_b(piles, 1);
-	ft_putstr("ss\n");
+	addtab(piles, "ss\n");
 }
 
 void	swap(t_piles *piles, char pilename)

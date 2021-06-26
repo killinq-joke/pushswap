@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/26 11:28:49 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/26 17:01:53 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # endif
 
 typedef struct s_cell	t_cell;
+typedef struct s_scell	t_scell;
 typedef struct s_group_node t_group_node;
 
 typedef struct s_group_node
@@ -45,13 +46,17 @@ typedef struct s_cell {
 	t_cell	*n;
 	int		id;
 }				t_cell;
+typedef struct	s_scell {
+	char	*str;
+	t_scell	*n;
+}				t_scell;
 
 typedef struct s_piles {
 	t_cell	*pileA;
 	t_cell	*pileB;
 	t_cell	*expectedpileA;
 	int		expectedlen;
-	int		sorted;
+	t_scell	*results;
 }				t_piles;
 
 void			print_tab(t_piles *piles);
@@ -101,6 +106,8 @@ int				grouplen(t_cell *pile);
 int				printid(t_piles *piles);
 void			push(t_piles *piles, char pilename);
 void			free_pile(t_cell *pile);
-
+int				issorted(t_piles *piles);
+t_scell			*init_scell(char *str);
+void			addtab(t_piles *piles, char *str);
 
 #endif

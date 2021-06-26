@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:03:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/26 12:05:25 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/26 15:04:37 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		pivotfinder(t_cell *pile)
 	sort = pilesort(groupcpy(pile));
 	tmp = sort;
 	len = pilelen(sort) / 2 + pilelen(sort) % 2;
-	printpile(pile);
+	// printpile(pile);
 	while (len-- - 1)
 		sort = sort->n;
 	median = sort->v;
