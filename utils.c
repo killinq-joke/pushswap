@@ -16,11 +16,9 @@ int	pileinfnum(t_cell *pile, int nb)
 {
 	t_cell	*current;
 	int		numinf;
-	int		groupid;
 
 	numinf = 0;
 	current = pile;
-	groupid = current->id;
 	while (current)
 	{
 		if (current->v < nb)
@@ -34,11 +32,9 @@ int	pilesupnum(t_cell *pile, int nb)
 {
 	t_cell	*current;
 	int		numsup;
-	int		groupid;
 
 	numsup = 0;
 	current = pile;
-	groupid = current->id;
 	while (current)
 	{
 		if (current->v > nb)

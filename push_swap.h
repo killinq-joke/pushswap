@@ -6,14 +6,14 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/25 15:19:30 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/26 11:28:49 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-# include <libc.h>
+#include <stdio.h>
 
 # ifndef INT_MIN
 #  define INT_MIN -2147483648
@@ -100,6 +100,7 @@ t_cell			*groupcpy(t_cell *pile);
 int				grouplen(t_cell *pile);
 int				printid(t_piles *piles);
 void			push(t_piles *piles, char pilename);
+void			free_pile(t_cell *pile);
 
 
 #endif

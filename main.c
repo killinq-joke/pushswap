@@ -123,7 +123,7 @@ int	sort(t_piles *piles)
 
 	sortA(piles);
 	i = 0;
-	while (i++ < 6)
+	while (i++ < 13)
 	{
 		sortB(piles);
 		while (grouplen(piles->pileB) == 3)
@@ -133,6 +133,19 @@ int	sort(t_piles *piles)
 			piles->pileA->id = 0;
 			push_a(piles);
 			piles->pileA->id = 0;
+			push_a(piles);
+			piles->pileA->id = 0;
+		}
+		while (grouplen(piles->pileB) == 2)
+		{
+			if (piles->pileB->v < piles->pileB->n->v)
+			push_a(piles);
+			piles->pileA->id = 0;
+			push_a(piles);
+			piles->pileA->id = 0;
+		}
+		while (grouplen(piles->pileB) == 1)
+		{
 			push_a(piles);
 			piles->pileA->id = 0;
 		}
@@ -360,6 +373,7 @@ int	main(int ac, char **av)
 			printid(piles);
 		}
 		print_tabs(piles);
+		free_pile(piles->expectedpileA);
 		free_piles(piles);
 	}
 	else
