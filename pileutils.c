@@ -6,26 +6,11 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:03:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/26 15:04:37 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 16:31:08 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		pilelen(t_cell *pile)
-{
-	t_cell	*current;
-	int		len;
-
-	len = 0;
-	current = pile;
-	while (current)
-	{
-		current = current->n;
-		len++;
-	}
-	return (len);
-}
 
 void	free_pile(t_cell *pile)
 {
@@ -100,19 +85,6 @@ t_cell	*pilesort(t_cell *pile)
 	return (pile);
 }
 
-void	printpile(t_cell *pile)
-{
-	t_cell	*current;
-
-	current = pile;
-	while (current)
-	{
-		printf("%d ,", current->v);
-		current = current->n;
-	}
-	printf("\n");
-}
-
 int		pivotfinder(t_cell *pile)
 {
 	t_cell	*sort;
@@ -129,29 +101,4 @@ int		pivotfinder(t_cell *pile)
 	median = sort->v;
 	free_pile(tmp);
 	return (median);
-}
-
-void	trivotfinder(t_cell *pile, t_group_node *group)
-{
-	t_cell	*sort;
-	t_cell	*current;
-	int		len;
-	int		i;
-
-	sort = pilesort(pilecpy(pile));
-	len = pilelen(sort) / 3;
-	current = sort;
-	i = 0;
-	while (i < pilelen(sort) - (2 * len))
-	{
-		current = current->n;
-		i++;
-	}
-	group->pivotLow = current->v;
-	while (i < pilelen(sort) - len)
-	{
-		current = current->n;
-		i++;
-	}
-	group->pivotHigh = current->v;
 }

@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/26 14:27:19 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 16:28:55 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,23 +90,4 @@ int	pileidsorted(t_cell *pile)
 		current = current->n;
 	}
 	return (0);
-}
-
-int	issorted(t_piles *piles)
-{
-	t_cell	*current;
-	t_cell	*currentsort;
-
-	if (pilelen(piles->pileA) != pilelen(piles->expectedpileA))
-		return (0);
-	current = piles->pileA;
-	currentsort = piles->expectedpileA;
-	while (current)
-	{
-		if (current->v != currentsort->v)
-			return (0);
-		current = current->n;
-		currentsort = currentsort->n;
-	}
-	return (1);
 }

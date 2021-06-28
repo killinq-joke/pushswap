@@ -61,9 +61,9 @@ void	smallgroupsorterA(t_piles *piles)
 
 int	sortA(t_piles *piles)
 {
-	int	median;
-	int	numofinf;
-	int	rrnum;
+	int			median;
+	int			numofinf;
+	int			rrnum;
 	static int	i = 1;
 
 	while (grouplen(piles->pileA) > 3)
@@ -85,10 +85,8 @@ int	sortA(t_piles *piles)
 			}
 		}
 		if (numofinf == 2)
-		{
 			if (piles->pileB->v < piles->pileB->n->v)
 				swap_b(piles, 0);
-		}
 		while (rrnum-- > 0)
 			reverse_ra(piles, 0);
 		i++;

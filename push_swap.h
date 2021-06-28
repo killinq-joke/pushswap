@@ -6,14 +6,13 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/28 16:00:00 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 16:30:01 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-#include <stdio.h>
 
 # ifndef INT_MIN
 #  define INT_MIN -2147483648
@@ -23,9 +22,9 @@
 #  define INT_MAX 2147483647
 # endif
 
-typedef struct s_cell	t_cell;
-typedef struct s_scell	t_scell;
-typedef struct s_group_node t_group_node;
+typedef struct s_cell		t_cell;
+typedef struct s_scell		t_scell;
+typedef struct s_group_node	t_group_node;
 
 typedef struct s_group_node
 {

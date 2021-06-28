@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:37:24 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/28 16:14:39 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 16:23:30 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	sortlow(t_piles *piles)
 	else if (piles->expectedlen == 3)
 		sort3(piles);
 }
-
 
 int	sort(t_piles *piles)
 {
