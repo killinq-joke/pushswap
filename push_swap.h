@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/28 12:28:43 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 16:00:00 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_cell {
 	t_cell	*n;
 	int		id;
 }				t_cell;
-typedef struct	s_scell {
+typedef struct s_scell {
 	char	*str;
 	t_scell	*n;
 }				t_scell;
@@ -110,5 +110,9 @@ int				issorted(t_piles *piles);
 t_scell			*init_scell(char *str);
 void			addtab(t_piles *piles, char *str);
 void			sort3A(t_piles *piles);
+void			free_res(t_scell *res);
+void			sortlow(t_piles *piles);
+int				sort(t_piles *piles);
+void			sort3B(t_piles *piles);
 
 #endif

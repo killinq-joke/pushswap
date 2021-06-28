@@ -17,8 +17,8 @@ t_cell	*init_cell(int value)
 	t_cell	*new;
 
 	new = ft_calloc(1, sizeof (t_cell));
-	new->v= value;
-	new->n= NULL;
+	new->v = value;
+	new->n = NULL;
 	new->id = -1;
 	return (new);
 }
@@ -36,162 +36,6 @@ void	push_tailA(t_piles *piles, t_cell *new)
 			current = current->n;
 		current->n = new;
 	}
-}
-
-void	sort3(t_piles *piles)
-{
-	int	fst;
-	int	sec;
-	int	thr;
-
-	fst = piles->pileA->v;
-	sec = piles->pileA->n->v;
-	thr = piles->pileA->n->n->v;
-	if (fst < sec && sec > thr && thr > fst) // 1 3 2
-	{
-		swap_a(piles, 0);
-		rotate_a(piles, 0);
-	}
-	else if (fst > sec && fst < thr) // 2 1 3
-		swap_a(piles, 0);
-	else if (fst < sec && sec > thr) // 2 3 1
-		reverse_ra(piles, 0);
-	else if (fst > sec && fst > thr && sec > thr) // 3 2 1
-	{
-		swap_a(piles, 0);
-		reverse_ra(piles, 0);
-	}
-	else if (fst > sec && fst > thr && thr > sec) // 3 1 2
-		rotate_a(piles, 0);
-}
-
-void	sortlow(t_piles *piles)
-{
-	if (piles->expectedlen == 2)
-	{
-		if (piles->pileA->v > piles->pileA->n->v)
-			swap_a(piles, 0);
-	}
-	else if (piles->expectedlen == 3)
-		sort3(piles);
-}
-
-void	sort3A(t_piles *piles)
-{
-	int	fst;
-	int	sec;
-	int	thr;
-
-	fst = piles->pileA->v;
-	sec = piles->pileA->n->v;
-	thr = piles->pileA->n->n->v;
-	if (fst < sec && sec > thr && thr > fst) // 1 3 2
-	{
-		push(piles, 'b');
-		swap(piles, 'a');
-		push(piles, 'a');
-	}
-	else if (fst > sec && fst < thr) // 2 1 3
-		swap(piles, 'a');
-	else if (fst < sec && sec > thr) // 2 3 1
-	{
-		push(piles, 'b');
-		swap(piles, 'a');
-		push(piles, 'a');
-		swap(piles, 'a');
-	}
-	else if (fst > sec && fst > thr && sec > thr) // 3 2 1
-	{
-		swap(piles, 'a');
-		push(piles, 'b');
-		swap(piles, 'a');
-		push(piles, 'a');
-		swap(piles, 'a');
-	}
-	else if (fst > sec && fst > thr && thr > sec) // 3 1 2
-	{
-		swap(piles, 'a');
-		push(piles, 'b');
-		swap(piles, 'a');
-		push(piles, 'a');
-	}
-}
-
-void	sort3B(t_piles *piles)
-{
-	int	fst;
-	int	sec;
-	int	thr;
-
-	fst = piles->pileB->v;
-	sec = piles->pileB->n->v;
-	thr = piles->pileB->n->n->v;
-	if (fst < sec && sec < thr) // 1 2 3
-	{
-		swap(piles, 'b');
-		push(piles, 'a');
-		swap(piles, 'b');
-		push(piles, 'b');
-		swap(piles, 'b');
-	}
-	else if (fst < sec && sec > thr && thr > fst) // 1 3 2
-	{
-		swap(piles, 'b');
-		push(piles, 'a');
-		swap(piles, 'b');
-		push(piles, 'b');
-	}
-	else if (fst > sec && fst < thr) // 2 1 3
-	{
-		push(piles, 'a');
-		swap(piles, 'b');
-		push(piles, 'b');
-		swap(piles, 'b');
-	}
-	else if (fst < sec && sec > thr) // 2 3 1
-	{
-		swap(piles, 'b');
-	}
-	else if (fst > sec && fst > thr && thr > sec) // 3 1 2
-	{
-		push(piles, 'a');
-		swap(piles, 'b');
-		push(piles, 'b');
-	}
-}
-
-int	sort(t_piles *piles)
-{
-	sortA(piles);
-	while (!issorted(piles))
-	{
-		sortB(piles);
-		while (grouplen(piles->pileB) == 3)
-		{
-			sort3B(piles);
-			push_a(piles);
-			piles->pileA->id = 0;
-			push_a(piles);
-			piles->pileA->id = 0;
-			push_a(piles);
-			piles->pileA->id = 0;
-		}
-		while (grouplen(piles->pileB) == 2)
-		{
-			if (piles->pileB->v < piles->pileB->n->v)
-				swap_b(piles, 0);
-			push_a(piles);
-			piles->pileA->id = 0;
-			push_a(piles);
-			piles->pileA->id = 0;
-		}
-		while (grouplen(piles->pileB) == 1)
-		{
-			push_a(piles);
-			piles->pileA->id = 0;
-		}
-	}
-	return (0);
 }
 
 void	smallgroupsorterA(t_piles *piles)
@@ -214,27 +58,6 @@ void	smallgroupsorterA(t_piles *piles)
 		}
 	}
 }
-
-// void	smallgroupsorterB(t_piles *piles)
-// {
-// 	while (grouplen(piles->pileA) <= 2 && grouplen(piles->pileA) > 0)
-// 	{
-// 		if (grouplen(piles->pileA) == 2)
-// 		{
-// 			if (piles->pileA->v < piles->pileA->n->n->v)
-// 				swap_a(piles, 0);
-// 			piles->pileA->id = 0;
-// 			push_b(piles);
-// 			piles->pileA->id = 0;
-// 			push_b(piles);
-// 		}
-// 		if (grouplen(piles->pileA) == 1)
-// 		{
-// 			piles->pileA->id = 0;
-// 			push_b(piles);
-// 		}
-// 	}
-// }
 
 int	sortA(t_piles *piles)
 {
@@ -281,9 +104,9 @@ int	sortA(t_piles *piles)
 
 int	sortB(t_piles *piles)
 {
-	int	median;
-	int	numofsup;
-	int	rrnum;
+	int			median;
+	int			numofsup;
+	int			rrnum;
 	static int	i = 1;
 
 	while (grouplen(piles->pileB) > 3)
@@ -317,77 +140,7 @@ int	sortB(t_piles *piles)
 		}
 		i++;
 	}
-
 	return (0);
-}
-
-int	sortAgroup(t_piles *piles)
-{
-	int	median;
-	int	numofinf;
-
-	while (pilelen(piles->pileA) > 2)
-	{
-		median = pivotfinder(piles->pileA);
-		numofinf = pileinfnum(piles->pileA, median);
-		while (pileinfnum(piles->pileA, median) > 0)
-		{
-			if (piles->pileA->v < median)
-				push_b(piles);
-			else
-			{
-				piles->pileA->id++;
-				rotate_a(piles, 0);
-			}
-		}
-		if (numofinf == 2)
-		{
-			if (piles->pileB->v < piles->pileB->n->v)
-				swap_b(piles, 0);
-		}
-	}
-	if (piles->pileA->v > piles->pileA->n->v)
-		swap_a(piles, 0);
-	piles->pileA->id = 0;
-	piles->pileA->n->id = 0;
-	return (0);
-}
-
-int	printid(t_piles *piles)
-{
-	t_cell	*current;
-
-	current = piles->pileA;
-	printf("[");
-	while (current)
-	{
-		printf("%d, ", current->id);
-		current = current->n;
-	}
-	printf("] pileA \n[ ");
-	current = piles->pileB;
-	while (current)
-	{
-		printf("%d, ", current->id);
-		current = current->n;
-	}
-	printf("] pileB \n");
-	return (0);
-}
-
-void	free_res(t_scell *res)
-{
-	t_scell	*current;
-	t_scell	*tmp;
-
-	current = res;
-	while (current)
-	{
-		tmp = current;
-		ft_putstr(current->str);
-		current = current->n;
-		free(tmp);
-	}
 }
 
 int	main(int ac, char **av)
