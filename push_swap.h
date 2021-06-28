@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/26 17:01:53 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 12:28:43 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ void			free_pile(t_cell *pile);
 int				issorted(t_piles *piles);
 t_scell			*init_scell(char *str);
 void			addtab(t_piles *piles, char *str);
+void			sort3A(t_piles *piles);
 
 #endif

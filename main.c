@@ -38,6 +38,44 @@ void	push_tailA(t_piles *piles, t_cell *new)
 	}
 }
 
+void	sort3(t_piles *piles)
+{
+	int	fst;
+	int	sec;
+	int	thr;
+
+	fst = piles->pileA->v;
+	sec = piles->pileA->n->v;
+	thr = piles->pileA->n->n->v;
+	if (fst < sec && sec > thr && thr > fst) // 1 3 2
+	{
+		swap_a(piles, 0);
+		rotate_a(piles, 0);
+	}
+	else if (fst > sec && fst < thr) // 2 1 3
+		swap_a(piles, 0);
+	else if (fst < sec && sec > thr) // 2 3 1
+		reverse_ra(piles, 0);
+	else if (fst > sec && fst > thr && sec > thr) // 3 2 1
+	{
+		swap_a(piles, 0);
+		reverse_ra(piles, 0);
+	}
+	else if (fst > sec && fst > thr && thr > sec) // 3 1 2
+		rotate_a(piles, 0);
+}
+
+void	sortlow(t_piles *piles)
+{
+	if (piles->expectedlen == 2)
+	{
+		if (piles->pileA->v > piles->pileA->n->v)
+			swap_a(piles, 0);
+	}
+	else if (piles->expectedlen == 3)
+		sort3(piles);
+}
+
 void	sort3A(t_piles *piles)
 {
 	int	fst;
@@ -337,31 +375,6 @@ int	printid(t_piles *piles)
 	return (0);
 }
 
-void	optimize(t_scell *res)
-{
-	t_scell	*current;
-	t_scell	*tmp1;
-	t_scell	*tmp2;
-
-	current = res;
-	while (current->n->n)
-	{
-		tmp1 = current->n;
-		tmp2 = current->n->n;
-		if (tmp1->str[0] == tmp2->str[1] && tmp1->str[0] == 'r')
-		{
-			if ((tmp1->str[1] == 'r' && tmp1->str[2] == tmp2->str[1]) || (tmp2->str[1] == 'r' && tmp2->str[2] == tmp1->str[1]))
-			{
-				printf("salut == %s -- %s", current->n->str, current->n->n->str);
-				current->n = current->n->n->n;
-				free(tmp1);
-				free(tmp2);
-			}
-		}
-		current = current->n;
-	}
-}
-
 void	free_res(t_scell *res)
 {
 	t_scell	*current;
@@ -391,19 +404,13 @@ int	main(int ac, char **av)
 			free_piles(piles);
 			return (0);
 		}
+		piles->expectedpileA = pilesort(pilecpy(piles->pileA));
+		piles->expectedlen = pilelen(piles->pileA);
 		if (pilelen(piles->pileA) <= 3)
-		{
-			sort3A(piles);
-		}
+			sortlow(piles);
 		else
-		{
-			piles->expectedpileA = pilesort(pilecpy(piles->pileA));
-			piles->expectedlen = pilelen(piles->pileA);
 			sort(piles);
-		}
-		// print_tabs(piles);
 		free_pile(piles->expectedpileA);
-		optimize(piles->results);
 		free_res(piles->results);
 		free_piles(piles);
 	}
