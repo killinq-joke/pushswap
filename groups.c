@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:45:59 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/25 22:37:45 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/29 15:36:55 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,3 @@ int	grouplen(t_cell *pile)
 	}
 	return (len);
 }
-
-// int		pivotfinder(t_cell *pile)
-// {
-// 	t_cell	*sort;
-// 	int		median;
-// 	int		len;
-
-// 	sort = pilesort(pilecpy(pile));
-// 	len = pilelen(sort) / 2 + pilelen(sort) % 2;
-// 	while (len-- - 1)
-// 		sort = sort->n;
-// 	median = sort->v;
-// 	free_pile(sort);
-// 	return (median);
-// }

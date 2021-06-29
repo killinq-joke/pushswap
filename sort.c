@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:37:24 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/28 18:53:10 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/29 15:37:41 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,14 @@ void	sortlow(t_piles *piles)
 
 int	sort(t_piles *piles)
 {
-	sortA(piles);
-	while (!issorted(piles))
+	if (!issorted(piles))
 	{
-		sortB(piles);
-		groupwhile(piles);
+		sortA(piles);
+		while (!issorted(piles))
+		{
+			sortB(piles);
+			groupwhile(piles);
+		}
 	}
 	return (0);
 }
