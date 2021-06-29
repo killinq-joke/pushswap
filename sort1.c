@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 16:14:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/29 10:52:25 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/29 11:10:02 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,47 +104,4 @@ void	sort3B(t_piles *piles)
 	}
 	else
 		sort2(piles, fst, sec, thr);
-}
-
-int	distanceup(t_piles *piles, int median)
-{
-	t_cell	*current;
-	int		distanceu;
-
-	distanceu = 0;
-	current = piles->pileA;
-	while (current && current->v >= median)
-	{
-		distanceu++;
-		current = current->n;
-	}
-	return (distanceu);
-}
-
-#include <stdio.h>
-int	distancedown(t_piles *piles, int median)
-{
-	t_cell	*current;
-	int		distanced;
-	int		i;
-
-	distanced = 0;
-	current = piles->pileA;
-	i = 0;
-	while (current)
-	{
-		if (current->v < median)
-			distanced = i;
-		current = current->n;
-		i++;
-	}
-	return (pilelen(piles->pileA) - distanced);
-}
-
-int	distanceinf(t_piles *piles, int median)
-{
-	// printf("salut %d -- %d\n", distancedown(piles, median), distanceup(piles, median));
-	if (distancedown(piles, median) > distanceup(piles, median))
-		return (1);
-	return (0);
 }

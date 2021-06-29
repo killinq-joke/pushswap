@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/29 10:59:18 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/29 11:08:08 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int				sort(t_piles *piles);
 void			sort3B(t_piles *piles);
 void			sort3(t_piles *piles);
 int				distanceinf(t_piles *piles, int median);
+int				sortA2(t_piles *piles, int i, int median, int rrnum);
 
 #endif

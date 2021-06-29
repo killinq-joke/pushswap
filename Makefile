@@ -6,7 +6,7 @@
 #    By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 12:06:35 by ztouzri           #+#    #+#              #
-#    Updated: 2021/06/28 16:29:31 by ztouzri          ###   ########.fr        #
+#    Updated: 2021/06/29 11:08:20 by ztouzri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 NAME = push_swap
 LIB = libft.a
-SRCS = main.c parser.c error.c print.c push.c swap.c rotate.c reverse.c pileutils.c utils.c utils1.c groups.c free.c sort.c sort1.c
+SRCS = main.c parser.c error.c print.c push.c swap.c rotate.c reverse.c pileutils.c utils.c utils1.c utils2.c groups.c free.c sort.c sort1.c
 OBJS = $(SRCS:.c=.o)
 
 .c.o:
