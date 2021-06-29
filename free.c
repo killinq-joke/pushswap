@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 08:31:50 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/17 15:20:21 by ztouzri          ###   ########.fr       */
+/*   Created: 2021/06/28 15:33:52 by ztouzri           #+#    #+#             */
+/*   Updated: 2021/06/28 18:08:56 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	free_res(t_scell *res)
 {
-	t_list	*last;
+	t_scell	*current;
+	t_scell	*tmp;
 
-	if (lst == 0)
-		return (NULL);
-	last = lst;
-	while (last->n)
-		last = last->n;
-	return (last);
+	current = res;
+	while (current)
+	{
+		tmp = current;
+		ft_putstr(current->str);
+		current = current->n;
+		free(tmp);
+	}
+}
+
+void	free_pile(t_cell *pile)
+{
+	t_cell	*tmp;
+
+	while (pile)
+	{
+		tmp = pile;
+		pile = pile->n;
+		free(tmp);
+	}
 }

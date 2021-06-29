@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 13:01:34 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/04 10:55:27 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/17 15:20:31 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int	check_dup(t_piles *piles)
 	current1 = piles->pileA;
 	while (current1)
 	{
-		current2 = current1->next;
+		current2 = current1->n;
 		while (current2)
 		{
-			if (current1->value == current2->value)
+			if (current1->v == current2->v)
 				return (1);
-			current2 = current2->next;
+			current2 = current2->n;
 		}
-		current1 = current1->next;
+		current1 = current1->n;
 	}
 	return (0);
 }

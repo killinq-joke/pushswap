@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 08:31:50 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/17 15:20:21 by ztouzri          ###   ########.fr       */
+/*   Created: 2021/06/26 18:24:24 by ztouzri           #+#    #+#             */
+/*   Updated: 2021/06/26 19:01:20 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_list	*last;
+	int	i;
 
-	if (lst == 0)
-		return (NULL);
-	last = lst;
-	while (last->n)
-		last = last->n;
-	return (last);
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

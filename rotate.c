@@ -17,17 +17,17 @@ void	rotate_a(t_piles *piles, int isRR)
 	t_cell	*current;
 	t_cell	*tmp;
 
-	if (!piles->pileA || !piles->pileA->next)
+	if (!piles->pileA || !piles->pileA->n)
 		return ;
-	tmp = piles->pileA->next;
+	tmp = piles->pileA->n;
 	current = piles->pileA;
-	while (current->next)
-		current = current->next;
-	current->next = piles->pileA;
+	while (current->n)
+		current = current->n;
+	current->n = piles->pileA;
 	piles->pileA = tmp;
-	current->next->next = NULL;
+	current->n->n = NULL;
 	if (!isRR)
-		ft_putstr("ra\n");
+		addtab(piles, "ra\n");
 }
 
 void	rotate_b(t_piles *piles, int isRR)
@@ -35,22 +35,22 @@ void	rotate_b(t_piles *piles, int isRR)
 	t_cell	*current;
 	t_cell	*tmp;
 
-	if (!piles->pileB || !piles->pileB->next)
+	if (!piles->pileB || !piles->pileB->n)
 		return ;
-	tmp = piles->pileB->next;
+	tmp = piles->pileB->n;
 	current = piles->pileB;
-	while (current->next)
-		current = current->next;
-	current->next = piles->pileB;
+	while (current->n)
+		current = current->n;
+	current->n = piles->pileB;
 	piles->pileB = tmp;
-	current->next->next = NULL;
+	current->n->n = NULL;
 	if (!isRR)
-		ft_putstr("rb\n");
+		addtab(piles, "rb\n");
 }
 
 void	rr(t_piles *piles)
 {
 	rotate_a(piles, 1);
 	rotate_b(piles, 1);
-	ft_putstr("rr\n");
+	addtab(piles, "rr\n");
 }

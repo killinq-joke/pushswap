@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:28:41 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/08 20:17:21 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/17 15:20:21 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	free_piles(t_piles *piles)
 	while (current)
 	{
 		tmp = current;
-		current = current->next;
+		current = current->n;
 		free(tmp);
 	}
 	current = piles->pileB;
 	while (current)
 	{
 		tmp = current;
-		current = current->next;
+		current = current->n;
 		free(tmp);
 	}
 	free(piles);

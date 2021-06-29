@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 17:37:04 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/08 19:14:26 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/26 16:54:08 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,37 @@ void	reverse_ra(t_piles *piles, int isRRR)
 {
 	t_cell	*current;
 
-	if (!piles->pileA || !piles->pileA->next)
+	if (!piles->pileA || !piles->pileA->n)
 		return ;
 	current = piles->pileA;
-	while (current->next->next)
-		current = current->next;
-	current->next->next = piles->pileA;
-	piles->pileA = current->next;
-	current->next = NULL;
+	while (current->n->n)
+		current = current->n;
+	current->n->n = piles->pileA;
+	piles->pileA = current->n;
+	current->n = NULL;
 	if (!isRRR)
-		ft_putstr("rra\n");
+		addtab(piles, "rra\n");
 }
 
 void	reverse_rb(t_piles *piles, int isRRR)
 {
 	t_cell	*current;
 
-	if (!piles->pileB || !piles->pileB->next)
+	if (!piles->pileB || !piles->pileB->n)
 		return ;
 	current = piles->pileB;
-	while (current->next->next)
-		current = current->next;
-	current->next->next = piles->pileB;
-	piles->pileB = current->next;
-	current->next = NULL;
+	while (current->n->n)
+		current = current->n;
+	current->n->n = piles->pileB;
+	piles->pileB = current->n;
+	current->n = NULL;
 	if (!isRRR)
-		ft_putstr("rrb\n");
+		addtab(piles, "rrb\n");
 }
 
 void	rrr(t_piles *piles)
 {
 	reverse_ra(piles, 1);
 	reverse_rb(piles, 1);
-	ft_putstr("rrr\n");
+	addtab(piles, "rrr\n");
 }

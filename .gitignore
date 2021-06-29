@@ -3,3 +3,8 @@
 .DS_Store
 a.out
 *.dSYM
+push_swap
+.gitignore
+libft.a
+push_swap_tester/
+pybro.py
