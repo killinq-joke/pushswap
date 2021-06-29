@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:33:52 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/28 15:34:22 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 18:08:56 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ void	free_res(t_scell *res)
 		tmp = current;
 		ft_putstr(current->str);
 		current = current->n;
+		free(tmp);
+	}
+}
+
+void	free_pile(t_cell *pile)
+{
+	t_cell	*tmp;
+
+	while (pile)
+	{
+		tmp = pile;
+		pile = pile->n;
 		free(tmp);
 	}
 }

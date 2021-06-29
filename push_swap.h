@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:53:05 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/28 16:30:01 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/29 10:59:18 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_piles {
 	t_scell	*results;
 }				t_piles;
 
+int				sortA(t_piles *piles);
 void			print_tab(t_piles *piles);
 void			push_a(t_piles *piles);
 void			push_b(t_piles *piles);
@@ -92,6 +93,8 @@ int				pivotfinder(t_cell *pile);
 void			trivotfinder(t_cell *pile, t_group_node *group);
 t_group_node	*init_group(int group_len);
 void			addgrouphead(t_group_node **head, t_group_node *new);
+void			sortA1(t_piles *piles, int i);
+void			sortB1(t_piles *piles, int median, int numofsup, int i);
 int				sortA(t_piles *piles);
 int				sortB(t_piles *piles);
 int				pilesupnum(t_cell *pile, int nb);
@@ -113,5 +116,7 @@ void			free_res(t_scell *res);
 void			sortlow(t_piles *piles);
 int				sort(t_piles *piles);
 void			sort3B(t_piles *piles);
+void			sort3(t_piles *piles);
+int				distanceinf(t_piles *piles, int median);
 
 #endif

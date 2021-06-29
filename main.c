@@ -12,17 +12,6 @@
 
 #include "push_swap.h"
 
-t_cell	*init_cell(int value)
-{
-	t_cell	*new;
-
-	new = ft_calloc(1, sizeof (t_cell));
-	new->v = value;
-	new->n = NULL;
-	new->id = -1;
-	return (new);
-}
-
 void	push_tailA(t_piles *piles, t_cell *new)
 {
 	t_cell	*current;
@@ -40,11 +29,18 @@ void	push_tailA(t_piles *piles, t_cell *new)
 
 void	smallgroupsorterA(t_piles *piles)
 {
+	if (grouplen(piles->pileA) == 3)
+	{
+		if (pilelen(piles->pileB) == 2)
+			sortlow(piles);
+		sort3A(piles);
+		pileidsorted(piles->pileA);
+	}
 	while (grouplen(piles->pileB) <= 2 && grouplen(piles->pileB) > 0)
 	{
 		if (grouplen(piles->pileB) == 2)
 		{
-			if (piles->pileB->v < piles->pileB->n->n->v)
+			if (piles->pileB->v < piles->pileB->n->v)
 				swap_b(piles, 0);
 			piles->pileB->id = 0;
 			push_a(piles);
@@ -61,40 +57,12 @@ void	smallgroupsorterA(t_piles *piles)
 
 int	sortA(t_piles *piles)
 {
-	int			median;
-	int			numofinf;
-	int			rrnum;
 	static int	i = 1;
 
 	while (grouplen(piles->pileA) > 3)
 	{
-		rrnum = 0;
-		median = pivotfinder(piles->pileA);
-		numofinf = pileinfnum(piles->pileA, median);
-		while (pileinfnum(piles->pileA, median) > 0)
-		{
-			if (piles->pileA->v < median)
-			{
-				piles->pileA->id = i;
-				push_b(piles);
-			}
-			else
-			{
-				rotate_a(piles, 0);
-				rrnum++;
-			}
-		}
-		if (numofinf == 2)
-			if (piles->pileB->v < piles->pileB->n->v)
-				swap_b(piles, 0);
-		while (rrnum-- > 0)
-			reverse_ra(piles, 0);
+		sortA1(piles, i);
 		i++;
-	}
-	if (grouplen(piles->pileA) == 3)
-	{
-		sort3A(piles);
-		pileidsorted(piles->pileA);
 	}
 	smallgroupsorterA(piles);
 	return (0);
@@ -104,31 +72,13 @@ int	sortB(t_piles *piles)
 {
 	int			median;
 	int			numofsup;
-	int			rrnum;
 	static int	i = 1;
 
 	while (grouplen(piles->pileB) > 3)
 	{
-		rrnum = 0;
 		median = pivotfinder(piles->pileB);
 		numofsup = pilesupnum(piles->pileB, median);
-		while (pilesupnum(piles->pileB, median) > 0)
-		{
-			if (piles->pileB->v > median)
-			{
-				piles->pileB->id = i;
-				push_a(piles);
-			}
-			else
-			{
-				rotate_b(piles, 0);
-				rrnum++;
-			}
-		}
-		while (rrnum--)
-			reverse_rb(piles, 0);
-		if (numofsup >= 3)
-			sortA(piles);
+		sortB1(piles, median, numofsup, i);
 		if (numofsup <= 2)
 		{
 			piles->pileA->id = 0;

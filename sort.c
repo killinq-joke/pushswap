@@ -6,7 +6,7 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:37:24 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/28 16:23:30 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 18:53:10 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,17 @@ void	sort3(t_piles *piles)
 void	sortlow(t_piles *piles)
 {
 	if (piles->expectedlen == 2)
-	{
 		if (piles->pileA->v > piles->pileA->n->v)
-			swap_a(piles, 0);
-	}
-	else if (piles->expectedlen == 3)
+			swap(piles, 'a');
+	if (pilelen(piles->pileA) == 3)
 		sort3(piles);
+	if (pilelen(piles->pileB) == 2)
+	{
+		if (piles->pileB->v < piles->pileB->n->v)
+			swap_b(piles, 0);
+		push_a(piles);
+		push_a(piles);
+	}
 }
 
 int	sort(t_piles *piles)

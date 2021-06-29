@@ -6,23 +6,11 @@
 /*   By: ztouzri <ztouzri@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:03:49 by ztouzri           #+#    #+#             */
-/*   Updated: 2021/06/28 16:31:08 by ztouzri          ###   ########.fr       */
+/*   Updated: 2021/06/28 16:33:57 by ztouzri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	free_pile(t_cell *pile)
-{
-	t_cell	*tmp;
-
-	while (pile)
-	{
-		tmp = pile;
-		pile = pile->n;
-		free(tmp);
-	}
-}
 
 t_cell	*pilecpy(t_cell *pile)
 {
@@ -85,7 +73,7 @@ t_cell	*pilesort(t_cell *pile)
 	return (pile);
 }
 
-int		pivotfinder(t_cell *pile)
+int	pivotfinder(t_cell *pile)
 {
 	t_cell	*sort;
 	t_cell	*tmp;
@@ -95,7 +83,6 @@ int		pivotfinder(t_cell *pile)
 	sort = pilesort(groupcpy(pile));
 	tmp = sort;
 	len = pilelen(sort) / 2 + pilelen(sort) % 2;
-	// printpile(pile);
 	while (len-- - 1)
 		sort = sort->n;
 	median = sort->v;

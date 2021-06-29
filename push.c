@@ -49,7 +49,6 @@ void	push_a(t_piles *piles)
 	piles->pileB->n = piles->pileA;
 	piles->pileA = piles->pileB;
 	piles->pileB = tmp;
-	// ft_putstr("pa\n");
 	addtab(piles, "pa\n");
 }
 
